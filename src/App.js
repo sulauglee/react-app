@@ -4,6 +4,7 @@ import CardList from './CardList';
 import SearchBox from './SearchBox';
 import './App.css';
 import Scroll from './Scroll';
+import ErrorBoundary from './ErrorBoundary';
 class App extends Component {
   // state = {
 
@@ -31,16 +32,18 @@ class App extends Component {
         .toLowerCase()
         .includes(this.state.searchfield.toLowerCase());
     });
-    if (this.state.robots === 0) {
+    if (this.state.robots.length === 0) {
       return <h2 className="tc">Loading ...</h2>;
     }
     return (
       <div className="tc pa3">
         <h1 className="f1">robots frinds</h1>
         <SearchBox searchChange={this.onSearchChange} />
-       <Scroll>
-       <CardList robots={filterdRobots} />
-       </Scroll>
+        <Scroll>
+          <ErrorBoundary>
+            <CardList robots={filterdRobots} />
+          </ErrorBoundary>
+        </Scroll>
       </div>
     );
   }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Card from './Card';
-import  'bootstrap';
+import 'bootstrap';
 class CardList extends Component {
   state = {};
 
   render() {
+    if (true) {
+      throw new Error('Error at runtime pls check with the Devloper !');
+    }
     if (this.props.robots.length === 0) {
       return <h2 className="tc text-danger">there is no data found !</h2>;
     }
